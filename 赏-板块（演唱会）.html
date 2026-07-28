@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>赏 · 音乐 — AutumnPants</title>
+<link rel="stylesheet" href="style.css">
 <style>
 /* ═══════════════════════════════════════════════════════
    RESET & BASE — shadergradient.co 风格
@@ -340,43 +341,6 @@ body{background:#08080c;color:#e2deec;font-family:"Inter","PingFang SC","Noto Sa
 .fs-overlay.on video{transform:scale(1);opacity:1}
 
 /* ═══════════════════════════════════════════════════════
-   TOP NAV — matches 听-板块 (nav-blue unified, dark adapted)
-   ═══════════════════════════════════════════════════════ */
-.topnav{position:fixed;top:0;left:0;right:0;z-index:60;padding:14px 28px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,rgba(8,8,12,.92),transparent);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.topnav .nav-center{display:flex;align-items:center;gap:24px}
-.topnav .nav-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:100%;max-width:1200px}
-.topnav .home{font-size:.8rem;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.06em;
-  display:flex;align-items:center;gap:6px;font-family:'Noto Sans SC',sans-serif}
-.topnav .home::before{content:'\2190';font-size:.75rem}
-.topnav .home:hover{color:var(--accent)}
-.topnav .links{display:flex;gap:0;align-items:center;position:relative;
-  background:rgba(255,255,255,.06);border-radius:50px;padding:3px}
-.topnav .links a{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.08em;
-  padding:6px 16px;transition:color .35s;position:relative;z-index:1;border-radius:50px;white-space:nowrap}
-.topnav .links a:hover,.topnav .links a.here{color:#fff}
-.nav-pill{position:absolute;top:3px;height:calc(100% - 6px);border-radius:50px;
-  background:var(--accent,#60a5fa);transition:left .35s cubic-bezier(.65,0,.35,1),width .35s cubic-bezier(.65,0,.35,1);
-  z-index:0;pointer-events:none}
-.topnav .nav-right{display:flex;align-items:center;gap:.75rem;
-  margin-left:auto;position:absolute;right:28px;top:50%;transform:translateY(-50%)}
-.theme-toggle{background:none;border:none;cursor:pointer;width:36px;height:36px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);transition:all .3s}
-.theme-toggle:hover{background:rgba(255,255,255,.06);color:#fff}
-.theme-toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.lang-toggle{position:relative;display:flex;align-items:center;height:30px;
-  background:rgba(255,255,255,.06);border-radius:20px;padding:2px;gap:0;
-  border:1px solid rgba(255,255,255,.08);overflow:hidden;transition:all .3s}
-.lang-toggle:hover{border-color:rgba(255,255,255,.2)}
-.lang-item{padding:3px 8px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.35);
-  transition:all .2s;white-space:nowrap;border-radius:16px;cursor:pointer;user-select:none;
-  font-family:'Noto Sans SC',sans-serif}
-.lang-item.active{background:var(--accent,#60a5fa);color:#fff}
-.lang-item:not(.active):hover{color:#fff}
-
-/* ═══════════════════════════════════════════════════════
    BOTTOM INFO BAR
    ═══════════════════════════════════════════════════════ */
 .bottombar{position:fixed;bottom:0;left:0;right:0;z-index:60;padding:14px 28px;
@@ -396,29 +360,26 @@ body{background:#08080c;color:#e2deec;font-family:"Inter","PingFang SC","Noto Sa
 
 <canvas id="bg"></canvas>
 
-<!-- 顶部导航 -->
-<nav class="topnav">
-  <div class="nav-wrap">
-    <div class="nav-center">
-      <a href="音乐首页.html" class="home" data-i18n="nav.home">音乐首页</a>
-      <div class="links">
-        <span class="nav-pill"></span>
-        <a href="听-板块.html" data-i18n="nav.listen">听</a>
-        <a href="赏-板块（演唱会）.html" class="here" data-i18n="nav.concert">赏</a>
-        <a href="演-板块/dist/舞台时光.html" data-i18n="nav.perform">演</a>
-        <a href="创-板块.html" data-i18n="nav.create">创</a>
-      </div>
-    </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="https://qijunhao.com" class="nav-logo">QI JUNHAO<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="https://qijunhao.com" data-i18n="nav.home">首页</a></li>
+      <li><a href="https://music.qijunhao.com" class="active" data-i18n="nav.music">音乐</a></li>
+      <li><a href="https://travel.qijunhao.com" data-i18n="nav.travel">旅行</a></li>
+      <li><a href="https://photography.qijunhao.com" data-i18n="nav.photo">摄影</a></li>
+      <li><a href="https://sport.qijunhao.com" data-i18n="nav.sports">运动</a></li>
+      <li><a href="https://resume.qijunhao.com" data-i18n="nav.resume">履历</a></li>
+      <li><a href="https://contact.qijunhao.com" data-i18n="nav.contact">联系</a></li>
+    </ul>
     <div class="nav-right">
       <div class="lang-toggle" id="langToggle">
         <span class="lang-item active" data-lang="zh">简</span>
         <span class="lang-item" data-lang="en">EN</span>
         <span class="lang-item" data-lang="hant">繁</span>
       </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <svg viewBox="0 0 24 24" id="themeIconSun"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        <svg viewBox="0 0 24 24" id="themeIconMoon" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题"></button>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -1189,32 +1150,9 @@ function updateConsoleLog(lang){
   // Update console log text if needed
 }
 
-// ─── Nav: Pill ────────────────────────
-(function(){
-  const links = document.querySelector('.topnav .links');
-  if (!links) return;
-  const pill = links.querySelector('.nav-pill');
-  if (!pill) return;
-  const items = links.querySelectorAll('a');
-  function move(target) {
-    pill.style.left = target.offsetLeft + 'px';
-    pill.style.width = target.offsetWidth + 'px';
-  }
-  const active = links.querySelector('a.here');
-  if (active) move(active);
-  items.forEach(item => item.addEventListener('mouseenter', () => move(item)));
-  links.addEventListener('mouseleave', () => {
-    const a = links.querySelector('a.here');
-    if (a) move(a);
-  });
-  window.addEventListener('resize', () => {
-    const a = links.querySelector('a.here');
-    if (a) move(a);
-  });
-})();
-
 // ─── Apply initial language ─────────────
 loadLang();
 </script>
+<script src="common.js"></script>
 </body>
 </html>

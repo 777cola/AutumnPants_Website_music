@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
 :root {
   --bg: #ffffff;
@@ -51,81 +52,6 @@ html, body {
   background: var(--bg);
   color: var(--text);
 }
-
-/* ════════════════════════════════════════════
-   TOP NAV — matches 听-板块 (nav-blue unified)
-   ════════════════════════════════════════════ */
-.topnav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-  padding: 14px 28px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(180deg, rgba(255,255,255,.95), transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-[data-theme="dark"] .topnav {
-  background: linear-gradient(180deg, rgba(15,23,42,.95), transparent);
-}
-.topnav .nav-center {
-  display: flex; align-items: center; gap: 24px;
-}
-.topnav .nav-wrap {
-  position: relative; display: flex; align-items: center; justify-content: center;
-  width: 100%; max-width: 1200px;
-}
-.topnav .home {
-  font-size: .8rem; color: var(--text-muted); text-decoration: none;
-  letter-spacing: .06em; display: flex; align-items: center; gap: 6px;
-  font-family: var(--font-body);
-}
-.topnav .home::before { content: '\2190'; font-size: .75rem; }
-.topnav .home:hover { color: var(--accent); }
-.topnav .links {
-  display: flex; gap: 0; align-items: center; position: relative;
-  background: var(--accent-subtle); border-radius: 50px; padding: 3px;
-}
-.topnav .links a {
-  font-size: .78rem; color: var(--text-muted); text-decoration: none;
-  letter-spacing: .08em; padding: 6px 16px; transition: color .35s;
-  font-family: var(--font-body); position: relative; z-index: 1;
-  border-radius: 50px; white-space: nowrap;
-}
-.topnav .links a:hover,
-.topnav .links a.here { color: #fff; }
-.nav-pill {
-  position: absolute; top: 3px; height: calc(100% - 6px);
-  border-radius: 50px; background: var(--accent);
-  transition: left .35s cubic-bezier(.65,0,.35,1), width .35s cubic-bezier(.65,0,.35,1);
-  z-index: 0; pointer-events: none;
-}
-.topnav .nav-right {
-  display: flex; align-items: center; gap: .75rem;
-  margin-left: auto; position: absolute; right: 28px; top: 50%; transform: translateY(-50%);
-}
-.theme-toggle {
-  background: none; border: none; cursor: pointer;
-  width: 36px; height: 36px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-secondary); transition: all var(--transition, 0.3s ease);
-}
-.theme-toggle:hover { background: var(--accent-subtle); color: var(--accent); }
-.theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.lang-toggle {
-  position: relative; display: flex; align-items: center; height: 30px;
-  background: var(--accent-subtle); border-radius: 20px; padding: 2px; gap: 0;
-  border: 1px solid var(--accent-border); overflow: hidden;
-  transition: all var(--transition, 0.3s ease);
-}
-.lang-toggle:hover { border-color: var(--accent); }
-.lang-item {
-  padding: 3px 8px; font-size: .72rem; font-weight: 600;
-  color: var(--text-muted); transition: all .2s; white-space: nowrap;
-  border-radius: 16px; cursor: pointer; user-select: none;
-  pointer-events: auto;
-  font-family: var(--font-cn);
-}
-.lang-item.active { background: var(--accent); color: #fff; }
-.lang-item:not(.active):hover { color: var(--accent); }
 
 /* ════════════════════════════════════════════
    LAYOUT — split: vinyl art left, stats right
@@ -493,28 +419,26 @@ html, body {
 </head>
 <body>
 
-<nav class="topnav">
-  <div class="nav-wrap">
-    <div class="nav-center">
-      <a href="音乐首页.html" class="home" data-i18n="nav.home">音乐首页</a>
-      <div class="links">
-        <span class="nav-pill"></span>
-        <a href="听-板块.html" data-i18n="nav.listen">听</a>
-        <a href="赏-板块（演唱会）.html" data-i18n="nav.concert">赏</a>
-        <a href="演-板块/dist/舞台时光.html" data-i18n="nav.perform">演</a>
-        <a href="创-板块.html" class="here" data-i18n="nav.create">创</a>
-      </div>
-    </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="https://qijunhao.com" class="nav-logo">QI JUNHAO<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="https://qijunhao.com" data-i18n="nav.home">首页</a></li>
+      <li><a href="https://music.qijunhao.com" class="active" data-i18n="nav.music">音乐</a></li>
+      <li><a href="https://travel.qijunhao.com" data-i18n="nav.travel">旅行</a></li>
+      <li><a href="https://photography.qijunhao.com" data-i18n="nav.photo">摄影</a></li>
+      <li><a href="https://sport.qijunhao.com" data-i18n="nav.sports">运动</a></li>
+      <li><a href="https://resume.qijunhao.com" data-i18n="nav.resume">履历</a></li>
+      <li><a href="https://contact.qijunhao.com" data-i18n="nav.contact">联系</a></li>
+    </ul>
     <div class="nav-right">
       <div class="lang-toggle" id="langToggle">
         <span class="lang-item active" data-lang="zh">简</span>
         <span class="lang-item" data-lang="en">EN</span>
         <span class="lang-item" data-lang="hant">繁</span>
       </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
-        <svg viewBox="0 0 24 24" id="themeIconSun"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        <svg viewBox="0 0 24 24" id="themeIconMoon" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题"></button>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -693,29 +617,7 @@ html, body {
     }, 200 + i * 120);
   });
 
-  // ─── Pill Nav ──────────────────────────────────
-  (function initPillNav(){
-    const links = document.querySelector('.topnav .links');
-    if (!links) return;
-    const pill = links.querySelector('.nav-pill');
-    if (!pill) return;
-    const items = links.querySelectorAll('a');
-    function move(target){
-      pill.style.left = target.offsetLeft + 'px';
-      pill.style.width = target.offsetWidth + 'px';
-    }
-    const active = links.querySelector('a.here');
-    if(active) move(active);
-    items.forEach(item => item.addEventListener('mouseenter', () => move(item)));
-    links.addEventListener('mouseleave', () => {
-      const a = links.querySelector('a.here');
-      if(a) move(a);
-    });
-    window.addEventListener('resize', () => {
-      const a = links.querySelector('a.here');
-      if(a) move(a);
-    });
-  })();
+
 })();
 </script>
 
@@ -804,5 +706,6 @@ const langToggleIIFE = (function(){
   apply(saved);
 })();
 </script>
+<script src="common.js"></script>
 </body>
 </html>
