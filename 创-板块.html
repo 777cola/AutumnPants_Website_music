@@ -422,10 +422,12 @@ html, body {
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">Qi JunHao<span class="dot">.</span></a>
+
     <div class="nav-gooey" id="navGooey"></div>
+
     <div class="nav-right">
       <div class="lang-toggle" id="langToggle">
-        <span class="lang-item active" data-lang="zh" data-full="简体中文">简</span>
+        <span class="lang-item" data-lang="zh" data-full="简体中文">简</span>
         <span class="lang-item" data-lang="en" data-full="English">EN</span>
         <span class="lang-item" data-lang="hant" data-full="繁體中文">繁</span>
       </div>
@@ -711,7 +713,7 @@ const langToggleIIFE = (function(){
 })();
 </script>
 <script src="common.js"></script>
-<script src="gooey-nav.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var gooeyContainer = document.getElementById('navGooey');
@@ -726,6 +728,27 @@ document.addEventListener('DOMContentLoaded', function() {
         { label: '运动', href: 'https://sport.qijunhao.com' },
         { label: '履历', href: 'https://resume.qijunhao.com' },
         { label: '联系', href: 'https://contact.qijunhao.com' },
+      ],
+      animationTime: 600,
+      particleCount: 12,
+    });
+  }
+});
+</script>
+<script src="gooey-nav.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var gooeyContainer = document.getElementById('navGooey');
+  if (gooeyContainer && typeof window.GooeyNav === 'function') {
+    window.GooeyNav(gooeyContainer, {
+      items: [
+        { label: '\u9996\u9875', href: 'https://qijunhao.com' },
+        { label: '\u97F3\u4E50', href: 'https://music.qijunhao.com' },
+        { label: '\u65C5\u884C', href: 'https://travel.qijunhao.com' },
+        { label: '\u6444\u5F71', href: 'https://photography.qijunhao.com' },
+        { label: '\u8FD0\u52A8', href: 'https://sport.qijunhao.com' },
+        { label: '\u5C65\u5386', href: 'https://resume.qijunhao.com' },
+        { label: '\u8054\u7CFB', href: 'https://contact.qijunhao.com' },
       ],
       animationTime: 600,
       particleCount: 12,
