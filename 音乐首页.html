@@ -714,7 +714,7 @@ const I18N = {
 let currentLang = 'zh';
 function applyLang(lang){
   currentLang = lang;
-  localStorage.setItem('lang', lang);
+  Prefs.set('lang', lang);
   document.querySelectorAll('.lang-item').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
@@ -722,7 +722,7 @@ function applyLang(lang){
   });
 }
 function loadLang(){
-  const saved = localStorage.getItem('lang') || 'zh';
+  const saved = Prefs.get('lang') || 'zh';
   applyLang(saved);
 }
 document.getElementById('langToggle').addEventListener('click', (e) => {
@@ -733,7 +733,7 @@ loadLang();
 
 // ── Dark mode ──
 (function(){
-  const theme = localStorage.getItem('theme') || 'light';
+  const theme = Prefs.get('theme') || 'light';
   if (theme === 'dark') {
     const s = document.createElement('style');
     s.textContent = `
@@ -753,14 +753,14 @@ loadLang();
   const sun = document.getElementById('themeIconSun');
   const moon = document.getElementById('themeIconMoon');
   let dark = document.documentElement.getAttribute('data-theme') === 'dark';
-  if (!dark) { const t = localStorage.getItem('theme'); dark = t === 'dark'; }
+  if (!dark) { const t = Prefs.get('theme'); dark = t === 'dark'; }
   if (dark) document.documentElement.setAttribute('data-theme', 'dark');
   if (sun) sun.style.display = dark ? 'none' : 'block';
   if (moon) moon.style.display = dark ? 'block' : 'none';
   btn.addEventListener('click', () => {
     dark = !dark;
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    Prefs.set('theme', dark ? 'dark' : 'light');
     if (sun) sun.style.display = dark ? 'none' : 'block';
     if (moon) moon.style.display = dark ? 'block' : 'none';
   });
@@ -771,7 +771,7 @@ loadLang();
   document.addEventListener('DOMContentLoaded', function () {
     var gooeyContainer = document.getElementById('navGooey');
     if (gooeyContainer && typeof window.GooeyNav === 'function') {
-      var lang = localStorage.getItem('lang') || 'zh';
+      var lang = Prefs.get('lang') || 'zh';
       window.GooeyNav(gooeyContainer, {
         items: [
           { label: '首页', href: 'https://qijunhao.com' },

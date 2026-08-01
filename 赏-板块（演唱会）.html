@@ -1103,7 +1103,7 @@ const I18N = {
 let currentLang = 'zh';
 function applyLang(lang){
   currentLang = lang;
-  localStorage.setItem('lang', lang);
+  Prefs.set('lang', lang);
   document.querySelectorAll('.lang-item').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
@@ -1116,7 +1116,7 @@ function applyLang(lang){
   updateConsoleLog(lang);
 }
 function loadLang(){
-  const saved = localStorage.getItem('lang') || 'zh';
+  const saved = Prefs.get('lang') || 'zh';
   applyLang(saved);
 }
 document.getElementById('langToggle')?.addEventListener('click', (e) => {

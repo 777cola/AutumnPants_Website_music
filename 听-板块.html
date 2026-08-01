@@ -451,7 +451,7 @@ function applyLang(lang){
 
 // ─── Theme ─────────────────────────────────────
 function applyTheme(){
-  const t = localStorage.getItem('theme') || 'light';
+  const t = Prefs.get('theme') || 'light';
   document.documentElement.setAttribute('data-theme', t);
   updateThemeIcons(t);
 }
@@ -459,7 +459,7 @@ function toggleTheme(){
   const cur = document.documentElement.getAttribute('data-theme');
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
+  Prefs.set('theme', next);
   updateThemeIcons(next);
 }
 function updateThemeIcons(theme){
@@ -491,7 +491,7 @@ function init(){
   });
   document.getElementById('themeToggle').addEventListener('click', toggleTheme);
   // Apply saved language after building dynamic content
-  applyLang(localStorage.getItem('lang') || 'zh');
+  applyLang(Prefs.get('lang') || 'zh');
 }
 
 document.addEventListener('DOMContentLoaded', init);
